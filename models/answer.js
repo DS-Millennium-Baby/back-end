@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 const answerSchema = mongoose.Schema({
   content: { // 내용
       type: String,
-      trim: true,
-      unique: 1
   },
   major:{ // 전공
       type: String,
@@ -16,6 +14,6 @@ const answerSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
-const Question = mongoose.model('Answer', answerSchema)
+const Answer = mongoose.model('Answer', answerSchema)
 
-module.exports = { Question }
+module.exports = { Answer }

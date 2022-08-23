@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const questionSchema = mongoose.Schema({
+const tipSchema = mongoose.Schema({
   title: { // 제목
       type: String,
   },
   content: { // 내용
       type: String,
   },
-  category: [{ // 카테고리
+  category: { // 카테고리, 1개만 선택
       type: String,
-  }],
+  },
   major:{ // 전공
       type: String,
   },
@@ -20,6 +20,6 @@ const questionSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
-const Question = mongoose.model('Question', questionSchema)
+const Tip = mongoose.model('Tip', tipSchema)
 
-module.exports = { Question }
+module.exports = { Tip }
