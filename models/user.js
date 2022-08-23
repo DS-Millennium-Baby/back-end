@@ -17,6 +17,12 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 5
     },
+    firstMajor:{ // 제1전공
+        type: String,
+    },
+    secondMajor:{ // 제2전공
+        type: String,
+    },
     token: {
         type: String
     },
