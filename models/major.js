@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const majorSchema = mongoose.Schema({
-  name: { // 전공이름
+  majorName: { // 전공이름
       type: String,
   },
   intro: { // 학과 소개

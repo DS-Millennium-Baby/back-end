@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const commentSchema = mongoose.Schema({
-  content: { // 내용
-      type: String,
-  },
-  tipID:{ // 전공
+  tipID:{ // 팁
     type: Schema.Types.ObjectId,
     ref:'Tip'
+  },
+  content: { // 내용
+      type: String,
   },
   writer:{ //답변자
     type: Schema.Types.ObjectId,

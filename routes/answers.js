@@ -3,7 +3,7 @@ const router = express.Router();
 const { Answer } = require('../models/answer');
 
 // 상세 글에 해당하는 답변 불러오기: get
-router.get("/getQuestion/:questionID", (req, res) => {
+router.get("/getAnswers/:questionID", (req, res) => {
   const questionID = req.params.questionID
   Answer.find({questionID: questionID})
   .exec((err, answer) => {

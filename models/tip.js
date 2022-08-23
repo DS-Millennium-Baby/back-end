@@ -12,7 +12,7 @@ const tipSchema = mongoose.Schema({
       type: String,
   },
   major:{ // 전공
-      type: String,
+    type: String,
   },
   writer:{ //작성자
     type: Schema.Types.ObjectId,
