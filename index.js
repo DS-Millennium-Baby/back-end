@@ -24,7 +24,11 @@ app.get('/', (req, res) => { // 루트 디렉토리에 라우트
 
 // 사용할 라우터 정리
 app.use('/api/users', require('./routes/users'));
-
+app.use('/api/questions', require('./routes/questions'));
+app.use('/api/majors', require('./routes/majors'));
+app.use('/api/tips', require('./routes/tips'));
+app.use('/api/answers', require('./routes/answers'));
+app.use('/api/comments', require('./routes/comments'));
 
 app.listen(port, () => { // port에서 실행
   console.log(`Example app listening on port ${port}`)

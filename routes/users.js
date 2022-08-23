@@ -4,6 +4,25 @@ const { User } = require('../models/user');
 const { auth } = require("../middleware/auth");
 
 
+// 사용자 정보 불러오기: get
+router.get('/:userID', (req, res) => {
+  const userID = req.params.userID
+  User.findOne({_id: userID})
+  .exec((err, user) => {
+    if(err) return res.json({success:false, err})
+    if(userID) return res.status(200).json({
+      success: true,
+      message:"유저를 불러왔습니다.",
+      user
+    })
+  })
+})
+
+// 사용자가 작성한 질문 불러오기: get
+
+// 사용자가 작성한 답변의 질문 불러오기: get
+
+
 // 회원가입 라우트
 router.post('/register', (req, res) => {
 
@@ -42,3 +61,5 @@ User.findOne({ email: req.body.email }, (err, user) => {
   })
 })
 })
+
+module.exports = router;

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const answerSchema = mongoose.Schema({
-  questionID:{ // 질문
-    type: Schema.Types.ObjectId,
-    ref:'Question'
-  },
+const commentSchema = mongoose.Schema({
   content: { // 내용
       type: String,
+  },
+  tipID:{ // 전공
+    type: Schema.Types.ObjectId,
+    ref:'Tip'
   },
   writer:{ //답변자
     type: Schema.Types.ObjectId,
@@ -15,6 +15,6 @@ const answerSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
-const Answer = mongoose.model('Answer', answerSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
-module.exports = { Answer }
+module.exports = { Comment }
