@@ -19,9 +19,34 @@ router.post("/addQuestion", (req, res) => {
 // 전체 질문 목록 불러오기: get
 router.get("/getQuestion", (req, res) => {
   Question.find({})
+  .sort({createdAt: -1}) 
   .exec((err, question) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.", question});
+      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다."});
+  });
+});
+
+// 최근 질문 3개 불러오기: get
+router.get("/getQuestionThree", (req, res) => {
+  Question.find({})
+  .sort({createdAt: -1}) 
+  .limit(3)
+  .exec((err, question) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다."});
+  });
+});
+
+// 전공별 질문 목록 3개 불러오기: get
+router.get("/getQuestionThree/:major", (req, res) => {
+  const major = req.params.major
+  Question.find({major: major})
+  .sort({createdAt: -1}) 
+  .limit(3)
+  .exec((err, question) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.", 
+      question });
   });
 });
 
@@ -31,7 +56,9 @@ router.get("/getQuestion/:major", (req, res) => {
   Question.find({major: major})
   .exec((err, question) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.", question});
+      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.",
+      question
+    });
   });
 });
 
@@ -42,7 +69,8 @@ router.get("/:questionID", (req, res) => {
   Question.findOne({_id: questionID})
   .exec((err, question) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.", question});
+      return res.status(200).send({ success: true, message:"질문 목록을 불러왔습니다.", 
+      question });
   });
 });
 

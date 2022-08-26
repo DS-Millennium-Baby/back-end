@@ -7,6 +7,8 @@ const { auth } = require("../middleware/auth");
 // 사용자 정보 불러오기: get
 router.get('/:userID', (req, res) => {
   const userID = req.params.userID
+  const category = req.body().category
+  console.log(category)
   User.findOne({_id: userID})
   .exec((err, user) => {
     if(err) return res.json({success:false, err})
@@ -56,7 +58,7 @@ User.findOne({ email: req.body.email }, (err, user) => {
 
       if(!isMatch) return res.json({ loginSuccess: false, message: "비밀번호가 틀렸습니다."})
       // 토큰 생성 과정 삭제
-      res.status(200).json({ loginSuccess: true, userID: user._id, userName: user.name, familyID: user.familyID })
+      res.status(200).json({ loginSuccess: true, userID: user._id, userName: user.name, firstMajor: user.firstMajor, secondMajor: user.secondMajor})
 
   })
 })

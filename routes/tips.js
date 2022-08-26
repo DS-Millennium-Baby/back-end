@@ -6,22 +6,33 @@ const { Tip } = require('../models/tip');
 router.post("/addTip", (req, res) => {
   let addQue = new Tip(req.body)
   addQue.save(
-      (err, question) => {
+      (err, tip) => {
           if(err) return res.status(400).json({ success: false, err })
           return res.status(200).json({
-              success: true, message: "팁이 등록되었습니다.", question
+              success: true, message: "팁이 등록되었습니다."
           })
       }
   )
+});
+
+// 전공별 팁 3개 불러오기
+router.get("/getTipThree", (req, res) => {
+  Tip.find({})
+  .sort({createdAt: -1}) 
+  .limit(3)
+  .exec((err, tip) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send({ success: true, message:"팁 목록을 불러왔습니다.", tip});
+  });
 });
 
 // 전공별 팁 여러 개 불러오기
 router.get("/getTip/:major", (req, res) => {
   const major = req.params.major
   Tip.find({major: major})
-  .exec((err, question) => {
+  .exec((err, tip) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).send({ success: true, message:"팁 목록을 불러왔습니다.", question});
+      return res.status(200).send({ success: true, message:"팁 목록을 불러왔습니다.", tip});
   });
 });
 

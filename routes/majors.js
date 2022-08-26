@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Major } = require('../models/major');
+const { User } = require('../models/user');
+
 
 // 전공 정보 불러오기: get
 router.get("/getMajor/:major", (req, res) => {
@@ -8,7 +10,8 @@ router.get("/getMajor/:major", (req, res) => {
   Major.findOne({majorName: major})
   .exec((err, majorInfo) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).send({ success: true, message:"전공 정보를 불러왔습니다.", majorInfo});
+      return res.status(200).send({ success: true, message:"전공 정보를 불러왔습니다.",
+       majorName: majorInfo.majorName, intro: majorInfo.intro, graduate: majorInfo.graduate});
   });
 });
 
